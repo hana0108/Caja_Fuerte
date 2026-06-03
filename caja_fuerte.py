@@ -159,7 +159,7 @@ def lanzar_gui():
 
     tk.Label(
         frame_cabecera,
-        text="CAJA FUERTE",
+        text="GESTOR DE CONTRASEÑAS",
         font=("Segoe UI", 17, "bold"),
         bg=BG_VENTANA, fg=COLOR_MARRON
     ).pack(anchor="w")
@@ -180,7 +180,7 @@ def lanzar_gui():
 
     tk.Label(
         frame_entrada,
-        text="Mensaje a proteger",
+        text="Contraseña a proteger",
         font=FONT_LABEL_B,
         bg=BG_VENTANA, fg=COLOR_TEXTO
     ).pack(anchor="w")
@@ -204,7 +204,7 @@ def lanzar_gui():
     var_alteracion = tk.BooleanVar(value=False)
     chk_alteracion = tk.Checkbutton(
         frame_opciones,
-        text="Simular alteracion del mensaje  (corrompe la firma para forzar un fallo de verificacion)",
+        text="Simular alteracion de la contraseña  (corrompe la firma para forzar un fallo de verificacion)",
         variable=var_alteracion,
         font=("Segoe UI", 9),
         bg=BG_VENTANA, fg=COLOR_MARRON_MED,
@@ -221,7 +221,7 @@ def lanzar_gui():
 
     btn = tk.Button(
         frame_btn,
-        text="Procesar mensaje",
+        text="Procesar contraseña",
         font=FONT_BTN,
         bg=COLOR_MARRON, fg="white",
         activebackground=COLOR_MARRON_MED,
@@ -256,7 +256,7 @@ def lanzar_gui():
 
     lbl_estado = tk.Label(
         frame_estado,
-        text="Esperando mensaje...",
+        text="Esperando respuesta...",
         font=FONT_ESTADO,
         bg=BG_VENTANA, fg=COLOR_MARRON_SUAVE
     )
@@ -276,11 +276,11 @@ def lanzar_gui():
     )
     salida.pack(fill="both", expand=True, padx=28, pady=(0, 20))
 
-    #  Logica del boton - se ejecuta al hacer click en "Procesar mensaje"
+    #  Logica del boton - se ejecuta al hacer click en "Procesar contraseña"
     def on_click():
         msg = campo_msg.get().strip()
         if not msg:
-            messagebox.showwarning("Aviso", "Escribe un mensaje antes de procesar.")
+            messagebox.showwarning("Aviso", "Escribe una contraseña antes de procesar.")
             return
 
         btn.config(state="disabled", text="Procesando...")
@@ -315,7 +315,7 @@ def lanzar_gui():
             linea("  PROCESO DE CIFRADO", "titulo")
             linea(SEP_LARGO, "sep")
             linea()
-            linea(f"  SHA-256 (mensaje original)", "gris")
+            linea(f"  SHA-256 (contraseña original)", "gris")
             linea(f"  {r['hash_original']}", "cifrado")
             linea()
             linea(f"  AES-256-GCM (texto cifrado)", "gris")
@@ -330,7 +330,7 @@ def lanzar_gui():
             linea("  PROCESO DE DESCIFRADO", "titulo")
             linea(SEP_LARGO, "sep")
             linea()
-            linea(f"  Mensaje recuperado", "gris")
+            linea(f"  contraseña recuperada", "gris")
             linea(f"  {r['mensaje_rec']}", "normal")
             linea()
 
@@ -342,7 +342,7 @@ def lanzar_gui():
             integ_tag   = "ok"           if r["hashes_ok"] else "error"
             linea(f"  Integridad SHA-256:     {integ_texto}", integ_tag)
             linea()
-            linea(f"  SHA-256 (mensaje descifrado)", "gris")
+            linea(f"  SHA-256 (contraseña descifrada)", "gris")
             linea(f"  {r['hash_rec']}", "gris")
             linea()
 
@@ -380,7 +380,7 @@ def lanzar_gui():
             messagebox.showerror("Error durante el procesamiento", str(e))
             lbl_estado.config(text="Error en el procesamiento", fg=COLOR_ROJO)
         finally:
-            btn.config(state="normal", text="Procesar mensaje")
+            btn.config(state="normal", text="Procesar contraseña")
 
     btn.config(command=on_click)
 

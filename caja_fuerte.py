@@ -148,7 +148,7 @@ FONT_ESTADO  = ("Segoe UI", 10, "bold")
 
 def lanzar_gui():
     ventana = tk.Tk()
-    ventana.title("Caja Fuerte - Transmision Hibrida")
+    ventana.title("Gestión de contraseñas - Transmision Hibrida")
     ventana.configure(bg=BG_VENTANA)
     ventana.geometry("760x700")
     ventana.resizable(True, True)
